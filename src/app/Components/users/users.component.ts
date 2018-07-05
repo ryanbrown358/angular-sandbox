@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { User } from '../../models/User';
+import { User } from '../../models/User'; 
 
 @Component({
   selector: 'app-users',
@@ -12,65 +12,70 @@ export class UsersComponent implements OnInit {
   showExtended: boolean = true;
   loaded: boolean = false;
   enableAdd: boolean = true;
+  currentClasses = {};
 
-  constructor() {
-    // the constructor is used more for dependancy injection to bring in services and inject it here
-
-  }
+  constructor() { }
 
   ngOnInit() {
-    // setTimeout(() => {
+   
       this.users = [
         {
-          firstName: "Crystal",
-          lastName: "Sand-Box",
-          age: 30,
+          firstName: 'John',
+          lastName: 'Doe',
+          age: 70,
           address: {
-            street: "50 main st",
-            city: "boston",
-            state: "MA"
+            street: '50 Main st',
+            city: 'Boston',
+            state: 'MA'
           },
-          image: 'http://lorempixel.com/500/500/people/1'
+          image: 'http://lorempixel.com/600/600/people/3',
+          isActive: true
         },
         {
-          firstName: "Leona",
-          lastName: "Sand-Box",
+          firstName: 'Kevin',
+          lastName: 'Johnson',
+          age: 34,
+          address: {
+            street: '20 School st',
+            city: 'Lynn',
+            state: 'MA'
+          },
+          image: 'http://lorempixel.com/600/600/people/2',
+          isActive: false
+        },
+        {
+          firstName: 'Karen',
+          lastName: 'Williams',
           age: 26,
           address: {
-            street: '11234 W neverending Lane',
-            city: 'Everwood', 
-            state: 'Forest'
+            street: '55 Mill st',
+            city: 'Miami',
+            state: 'FL'
           },
-          image: 'http://lorempixel.com/500/500/people/2'
-        },
-        {
-          firstName: 'Sababo',
-          lastName: 'Sand-Box',
-          age: 30,
-          address: {
-            street: "1123 W nevber lane",
-            city: "boston",
-            state: "TX"
-          }, image: 'http://lorempixel.com/500/500/people/3'
-        },
-
+          image: 'http://lorempixel.com/600/600/people/1',
+          isActive: true
+        }
       ];
+
       this.loaded = true;
-    // }, 2000);
 
-    // this is is what you would use if you are going to be using an AJAX call/Request 
+      // this.addUser({
+      //   firstName: 'David',
+      //   lastName: 'Jackson'
+      // });
 
-
-    // this.addUser({
-    //   firstName: "Ryan",
-    //   lastName: "BRown",
-
-    // });
-
+      this.setCurrentClasses();
   }
+
   addUser(user: User) {
-    this.users.push(user)
+    this.users.push(user);
   }
 
-
+  setCurrentClasses() {
+    this.currentClasses = {
+      'btn-success': this.enableAdd,
+      'big-text': this.showExtended
+    }
+  }
+  
 }
